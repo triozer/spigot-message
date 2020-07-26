@@ -1,0 +1,16 @@
+name: Message
+version: @version@
+main: fr.triozer.message.MessagePlugin
+authors: [Triozer]
+description: Talk away from other players.
+website: hello@imcedric.space
+
+commands:
+  message:
+    description: Send a message to a player
+    usage: /<command> (<player> <your message>) | enable | disable
+    aliases: [m, msg]
+  reply:
+    description: Send a message to a player
+    usage: /<command> <your message>
+    aliases: [r]

@@ -1,0 +1,65 @@
+# Messages sent in a player chat.
+messages:
+  # Message sent when enabling private messages
+  # Arguments: none
+  # Possible value: Plain text
+  # Default value: '  &aYou can now receive private messages.'
+  toggle-on: '  &aYou can now receive private messages.'
+  # Message sent when disabling private messages
+  # Arguments: none
+  # Possible value: Plain text
+  # Default value: '  &cYou can no longer receive private messages.'
+  toggle-off: '  &cYou can no longer receive private messages.'
+  # Message sent when a person who can force the sending of private messages
+  # sends a message to a person who has disabled them.
+  # Arguments:
+  # | {receiver} | The name of the player who was supposed to receive the message |
+  # Possible value: Plain text
+  # Default value: '  &b{player} &cdisabled his private messages. &8&o(Click here if you still want to send the message)'
+  disabled: '  &b{player} &cdisabled his private messages. &8&o(Click here if you still want to send the message)'
+  # Message sent when trying to enable already enabled private messages
+  # Arguments: none
+  # Possible value: Plain text
+  # Default value: '  &cMentions are already enabled.'
+  already-on: '  &cMentions are already enabled.'
+  # Message sent when trying to disable already disabled private messages
+  # Arguments: none
+  # Possible value: Plain text
+  # Default value: '  &cMentions are already disabled.'
+  already-off: '  &cMentions are already disabled.'
+
+# Error messages sent in a player chat.
+errors:
+  command:
+    # Message sent when a person forget to write a message.
+    # Arguments:
+    # | {receiver} | The name of the player who was supposed to receive the message |
+    # Possible value: Plain text
+    # Default value: '  &cPlease specify a message. &8&l(/message {receiver} <message>)'
+    no-message: '  &cPlease specify a message. &8&l(/message {receiver} <message>)'
+  # Message sent when the plugin can't find a player.
+  # Arguments:
+  # | {player} | The name of the player who was supposed to be found |
+  # Possible value: Plain text
+  # Default value: '  &cWho is &b`&f{player}&b`&c?'
+  cant-find-player: '  &cWho is &b`&f{player}&b`&c?'
+  # Message sent when a player try to send message to himself and the option is disabled.
+  # Arguments: none
+  # Possible value: Plain text
+  # Default value: '  &cYou can''t send messages to yourself. :$'
+  no-psycho: '  &cYou can''t send messages to yourself. :$'
+  # Message sent when a player send too much message.
+  # Arguments: none
+  # Possible value: Plain text
+  # Default value: '  &cYou can''t spam like this. >:('
+  spam: '  &cYou can''t spam like this. >:('
+  # Message sent when a player send the same message twice.
+  # Arguments: none
+  # Possible value: Plain text
+  # Default value: '  &cYou can''t spam like this. >:('
+  same-message: '  &cYou can''t spam like this. >:('
+  # Message sent when a player try to reply to nobody.
+  # Arguments: none
+  # Possible value: Plain text
+  # Default value: '  &cYou don''t have anyone to reply. :''('
+  no-reply: '  &cYou don''t have anyone to reply. :''('

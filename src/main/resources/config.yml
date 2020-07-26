@@ -1,0 +1,53 @@
+format:
+  # Message format when receiving a message
+  # Arguments:
+  # | {sender}   | The name of the player who sent the message     |
+  # | {receiver} | The name of the player who received the message |
+  # | {message}  | The message sent                                |
+  # Possible value: Plain text
+  # Default value: '&6{sender} &b&l> &b{message}'
+  in: '&6{sender} &b&l> &b{message}'
+  # Message format when sending a message
+  # Arguments:
+  # | {sender}   | The name of the player who sent the message |
+  # | {receiver} | The name of the player who received the message |
+  # | {message}  | The message sent                                |
+  # Possible value: Plain text
+  # Default value: '&8{receiver} &l<> &7{message}'
+  out: '&8{receiver} &l<> &7{message}'
+
+options:
+  # Allows players to talk to themselves
+  # Possible value: true | false
+  # Default value: false
+  psycho: false
+
+  # Anti-spam to prevent players from polluting other people's chats
+  anti-spam:
+    # Possible value: true | false
+    # Default value: false
+    enabled: true
+    # Interval between two messages, expressed in seconds
+    # Possible value: Number
+    # |      0     | Disabled                      |
+    # | Any number | Interval between the messages |
+    # Default value: 3
+    interval: 3
+    # Interval between two same message, expressed in seconds
+    # Possible value: Number
+    # |     -1     | Players won't be able to send the same message twice |
+    # |      0     | Disabled                                             |
+    # | Any number | Interval between the messages                        |
+    # Default value: -1
+    same-message: -1
+
+permissions:
+  bypass:
+    # Allows to send a message even if a player has disabled them
+    # Possible value: Plain text
+    # Default value: 'message.bypass.message'
+    message: 'message.bypass.message'
+    # Allows to send a message even if the anti-spam is enabled
+    # Possible value: Plain text
+    # Default value: 'message.bypass.anti-spam'
+    anti-spam: 'message.bypass.anti-spam'
