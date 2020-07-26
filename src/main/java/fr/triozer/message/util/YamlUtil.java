@@ -7,10 +7,7 @@ import org.bukkit.configuration.file.FileConfiguration;
  */
 public final class YamlUtil {
 
-    public static <T> T get(FileConfiguration from, String path, T defaultValue) {
-        if (!from.contains(path)) {
-            return defaultValue;
-        }
+    public static <T> T get(FileConfiguration from, String path) {
         return (T) from.get(path);
     }
 

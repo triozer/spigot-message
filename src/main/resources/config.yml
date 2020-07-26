@@ -9,12 +9,12 @@ format:
   in: '&6{sender} &b&l> &b{message}'
   # Message format when sending a message
   # Arguments:
-  # | {sender}   | The name of the player who sent the message |
+  # | {sender}   | The name of the player who sent the message     |
   # | {receiver} | The name of the player who received the message |
   # | {message}  | The message sent                                |
   # Possible value: Plain text
-  # Default value: '&8{receiver} &l<> &7{message}'
-  out: '&8{receiver} &l<> &7{message}'
+  # Default value: '&8{receiver} &l< &7{message}'
+  out: '&8{receiver} &l< &7{message}'
 
 options:
   # Allows players to talk to themselves

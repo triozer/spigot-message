@@ -24,7 +24,6 @@ public class ReplyCommand implements CommandExecutor {
       }
 
       PlayerMessenger sender = (PlayerMessenger) MessagePlugin.MESSENGERS.get(player.getUniqueId());
-
       StringBuilder message = new StringBuilder(args[0]);
 
       for(int i = 1; i < args.length; ++i) {

@@ -10,13 +10,6 @@ messages:
   # Possible value: Plain text
   # Default value: '  &cYou can no longer receive private messages.'
   toggle-off: '  &cYou can no longer receive private messages.'
-  # Message sent when a person who can force the sending of private messages
-  # sends a message to a person who has disabled them.
-  # Arguments:
-  # | {receiver} | The name of the player who was supposed to receive the message |
-  # Possible value: Plain text
-  # Default value: '  &b{player} &cdisabled his private messages. &8&o(Click here if you still want to send the message)'
-  disabled: '  &b{player} &cdisabled his private messages. &8&o(Click here if you still want to send the message)'
   # Message sent when trying to enable already enabled private messages
   # Arguments: none
   # Possible value: Plain text
@@ -35,8 +28,8 @@ errors:
     # Arguments:
     # | {receiver} | The name of the player who was supposed to receive the message |
     # Possible value: Plain text
-    # Default value: '  &cPlease specify a message. &8&l(/message {receiver} <message>)'
-    no-message: '  &cPlease specify a message. &8&l(/message {receiver} <message>)'
+    # Default value: '  &cPlease specify a message. &8&o(/message {receiver} <message>)'
+    no-message: '  &cPlease specify a message. &8&o(/message {receiver} <message>)'
   # Message sent when the plugin can't find a player.
   # Arguments:
   # | {player} | The name of the player who was supposed to be found |

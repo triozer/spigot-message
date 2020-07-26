@@ -20,6 +20,10 @@ public interface Messenger {
 
     MessageData getLastMessage();
 
+    Messenger getLastReceiver();
+
+    void setLastReceiver(Messenger messenger);
+
     CommandSender getCommandSender();
 
     MessengerSettings getSettings();

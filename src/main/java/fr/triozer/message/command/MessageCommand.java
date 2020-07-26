@@ -27,26 +27,26 @@ public class MessageCommand implements CommandExecutor {
          if ("enable".equalsIgnoreCase(args[0])) {
             if (!sender.getSettings().hasEnabledPM()) {
                sender.getSettings().setPM(true);
-               player.sendMessage(MessagePluginConfiguration.Message.PM_TOGGLE_ON);
+               player.sendMessage(MessagePluginConfiguration.t(MessagePluginConfiguration.Message.PM_TOGGLE_ON));
             } else {
-               player.sendMessage(MessagePluginConfiguration.Message.PM_ALREADY_ON);
+               player.sendMessage(MessagePluginConfiguration.t(MessagePluginConfiguration.Message.PM_ALREADY_ON));
             }
          } else if ("disable".equalsIgnoreCase(args[0])) {
             if (sender.getSettings().hasEnabledPM()) {
                sender.getSettings().setPM(false);
-               player.sendMessage(MessagePluginConfiguration.Message.PM_TOGGLE_OFF);
+               player.sendMessage(MessagePluginConfiguration.t(MessagePluginConfiguration.Message.PM_TOGGLE_OFF));
             } else {
-               player.sendMessage(MessagePluginConfiguration.Message.PM_ALREADY_OFF);
+               player.sendMessage(MessagePluginConfiguration.t(MessagePluginConfiguration.Message.PM_ALREADY_OFF));
             }
          } else {
-            player.sendMessage(MessagePluginConfiguration.Error.COMMAND_NO_MESSAGE.replace("{receiver}", args[0]));
+            player.sendMessage(MessagePluginConfiguration.t(MessagePluginConfiguration.Error.COMMAND_NO_MESSAGE.replace("{receiver}", args[0])));
          }
          return true;
       }
 
       Player target = Bukkit.getPlayerExact(args[0]);
       if (target == null) {
-         player.sendMessage(MessagePluginConfiguration.Error.PLAYER_NOT_FOUND.replace("{player}", args[0]));
+         player.sendMessage(MessagePluginConfiguration.t(MessagePluginConfiguration.Error.PLAYER_NOT_FOUND.replace("{player}", args[0])));
          return true;
       }
 

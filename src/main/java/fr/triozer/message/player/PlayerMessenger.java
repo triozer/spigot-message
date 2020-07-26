@@ -25,12 +25,11 @@ public class PlayerMessenger implements Messenger {
     }
 
     private boolean canSendMessage(Messenger receiver, TextMessageData messageData) {
-        if (MessagePluginConfiguration.Option.PSYCHO) {
+        if (this == receiver && !MessagePluginConfiguration.Option.PSYCHO) {
             this.player.sendMessage(MessagePluginConfiguration.t(MessagePluginConfiguration.Error.PSYCHO));
             return false;
         }
         if (!receiver.getSettings().hasEnabledPM()) {
-            this.player.sendMessage(MessagePluginConfiguration.t(MessagePluginConfiguration.Message.PM_DISABLED));
             return false;
         }
 
@@ -40,13 +39,13 @@ public class PlayerMessenger implements Messenger {
         if (message == null) {
             return true;
         }
-        if (!MessagePluginConfiguration.Option.ANTI_SPAM) {
+        if (!MessagePluginConfiguration.Option.ANTI_SPAM || this.canBypassAntiSpam()) {
             return true;
         }
 
-        if (messageData.getTime() - message.getTime() >= MessagePluginConfiguration.Option.ANTI_SPAM_INTERVAL) {
+        if (messageData.getTime() - message.getTime() <= MessagePluginConfiguration.Option.ANTI_SPAM_INTERVAL) {
             this.player.sendMessage(MessagePluginConfiguration.t(MessagePluginConfiguration.Error.SPAM));
-            return true;
+            return false;
         }
 
         if (messageData.getMessageContent().equalsIgnoreCase(message.getMessageContent())) {
@@ -54,7 +53,7 @@ public class PlayerMessenger implements Messenger {
                 this.player.sendMessage(MessagePluginConfiguration.t(MessagePluginConfiguration.Error.SAME_MESSAGE));
                 return false;
             }
-            if (messageData.getTime() - message.getTime() >= MessagePluginConfiguration.Option.ANTI_SPAM_SAME_MESSAGE) {
+            if (messageData.getTime() - message.getTime() <= MessagePluginConfiguration.Option.ANTI_SPAM_SAME_MESSAGE) {
                 this.player.sendMessage(MessagePluginConfiguration.t(MessagePluginConfiguration.Error.SAME_MESSAGE));
                 return false;
             }
@@ -66,14 +65,14 @@ public class PlayerMessenger implements Messenger {
     private void sendMessage(Messenger receiver, String message) {
         this.getCommandSender().sendMessage(
                 MessagePluginConfiguration.t(MessagePluginConfiguration.Format.OUT)
-                        .replace("{player}", this.getName())
-                        .replace("{sender}", receiver.getName())
+                        .replace("{sender}", this.getName())
+                        .replace("{receiver}", receiver.getName())
                         .replace("{message}", message)
         );
         receiver.getCommandSender().sendMessage(
                 MessagePluginConfiguration.t(MessagePluginConfiguration.Format.IN)
-                        .replace("{player}", this.getName())
-                        .replace("{sender}", receiver.getName())
+                        .replace("{sender}", this.getName())
+                        .replace("{receiver}", receiver.getName())
                         .replace("{message}", message)
         );
     }
@@ -89,6 +88,7 @@ public class PlayerMessenger implements Messenger {
             return;
         }
         this.sendMessage(receiver, message);
+        receiver.setLastReceiver(this);
         this.lastReceiver = receiver;
     }
 
@@ -127,6 +127,16 @@ public class PlayerMessenger implements Messenger {
     @Override
     public TextMessageData getLastMessage() {
         return this.lastMessageData;
+    }
+
+    @Override
+    public Messenger getLastReceiver() {
+        return this.lastReceiver;
+    }
+
+    @Override
+    public void setLastReceiver(Messenger messenger) {
+        this.lastReceiver = messenger;
     }
 
     @Override
