@@ -23,6 +23,8 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+      - name: View version
+        run: git describe --tags
       - name: Build with Gradle
         run: ./gradlew build
       - name: Cleanup Gradle Cache
@@ -41,8 +43,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         if: startsWith(github.ref, 'refs/tags/')
-      - name: View version
-        run: git describe --tags
       - name: Download artifacts
         uses: actions/download-artifact@v2
         if: startsWith(github.ref, 'refs/tags/')
