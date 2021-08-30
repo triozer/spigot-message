@@ -1,7 +1,7 @@
 plugins {
+    id 'java'
     id 'com.palantir.git-version' version '0.12.3'
 }
-apply plugin: 'java'
 
 group = 'fr.triozer'
 
@@ -12,9 +12,6 @@ if (details.isCleanTag) {
 } else {
     version = details.lastTag + '-' + details.commitDistance + '-' + details.gitHash
 }
-
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
 
 repositories {
     mavenCentral()
@@ -29,14 +26,30 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
     compileOnly 'org.spigotmc:spigot-api:1.8-R0.1-SNAPSHOT'
 }
 
-import org.apache.tools.ant.filters.ReplaceTokens
+def targetJavaVersion = 8
+java {
+    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
+    if (JavaVersion.current() < javaVersion) {
+        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
+        options.release = targetJavaVersion
+    }
+}
 
 processResources {
-    from(sourceSets.main.resources.srcDirs) {
-        filter ReplaceTokens, tokens: [version: version]
+    def props = [version: version]
+    inputs.properties props
+    filteringCharset 'UTF-8'
+    filesMatching('plugin.yml') {
+        expand props
     }
 }

@@ -1,5 +1,5 @@
 name: Message
-version: @version@
+version: '${version}'
 main: fr.triozer.message.MessagePlugin
 authors: [triozer]
 description: Talk away from other players.
