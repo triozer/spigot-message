@@ -1,7 +1,7 @@
 name: Message
-version: @version@
+version: '${version}'
 main: fr.triozer.message.MessagePlugin
-authors: [Triozer]
+authors: [triozer]
 description: Talk away from other players.
 website: hello@imcedric.space
 
