@@ -1,7 +1,17 @@
+plugins {
+    id 'com.palantir.git-version' version '0.12.3'
+}
 apply plugin: 'java'
 
-group = pluginGroup
-version = pluginVersion
+group = 'fr.triozer'
+
+def details = versionDetails()
+
+if (details.isCleanTag) {
+    version = details.lastTag
+} else {
+    version = details.lastTag + '-' + details.commitDistance + '-' + details.gitHash
+}
 
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
