@@ -17,6 +17,7 @@ jobs:
       - name: Cache Gradle packages
         uses: actions/cache@v2
         with:
+          fetch-depth: 0
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
